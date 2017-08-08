@@ -1,11 +1,14 @@
 package cs544.week2.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class SerieController {
+	
+	@RequestMapping("/series")
 	public String getSeries() {
-		return "";
+		return "series/list";
 	}
 
 	public String addSerie() {
