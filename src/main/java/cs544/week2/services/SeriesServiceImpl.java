@@ -6,6 +6,7 @@ import cs544.week2.entities.Episode;
 import cs544.week2.entities.Season;
 import cs544.week2.entities.Serie;
 import cs544.week2.entities.enums.Genre;
+import cs544.week2.model.SerieSummary;
 
 public class SeriesServiceImpl implements SeriesService {
 
@@ -28,7 +29,7 @@ public class SeriesServiceImpl implements SeriesService {
 	}
 
 	@Override
-	public Serie getSeriesSummary() {
+	public SerieSummary getSeriesSummary() {
 		// TODO Auto-generated method stub
 		return null;
 	}

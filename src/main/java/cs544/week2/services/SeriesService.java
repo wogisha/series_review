@@ -6,12 +6,13 @@ import cs544.week2.entities.Episode;
 import cs544.week2.entities.Season;
 import cs544.week2.entities.Serie;
 import cs544.week2.entities.enums.Genre;
+import cs544.week2.model.SerieSummary;
 
 public interface SeriesService {
 	void add(Serie serie);
 	void update(Serie serie);
 	void remove(Serie serie);
-	Serie getSeriesSummary();
+	SerieSummary getSeriesSummary();
 	List<Season> getSeriesSeasons();
 	List<Episode> getSeriesEpisodes();
 	List<Serie> findByNameOfShow(String name);
