@@ -10,10 +10,17 @@
 Artists
 
 <table class="table table-striped">
+    <tr>
+        <th>Artist name</th>
+        <th>Date of Birth</th>
+        <th>Biography</th>
+        <th></th>
+    </tr>
     <tr th:each="a: ${artists}">
         <td th:text="${a.name}"></td>
         <td th:text="${a.dateOfBirth}"></td>
         <td th:text="${a.biography}"></td>
+        <td ><a th:href="'/artists/'+${a.id}+'/delete'" class="btn btn-danger">Delete</a></td>
     </tr>
 </table>
 

@@ -13,11 +13,12 @@
 <table class="table table-striped">
     <tr>
         <th>description</th>
-        <th>AiredDate</th></tr>
+        <th>AiredDate</th><th></th></tr>
     <tr th:each="ep : ${season.episodes}">
         <td ><a th:href="'/episodes/'+${ep.id}" th:text="${ep.description}"></a></td>
 
         <td th:text="${ep.airedDate}"></td>
+        <td ><a th:href="'/episodes/'+${season.id}+'/'+${ep.id}+'/delete'" class="btn btn-danger">Delete</a></td>
     </tr>
 </table>
 <a th:href="'/seasons/'+${id}+'/addEpisode'" class="btn btn-default">Add Episode</a>

@@ -23,11 +23,13 @@
 <table class="table table-striped">
     <tr>
         <th>Season Summary</th>
-        <th>Season Year</th></tr>
+        <th>Season Year</th>
+        <th></th>
+    </tr>
     <tr th:each="season : ${serieSummary.seasonList} ">
         <td><a th:href="'/seasons/'+${season.id}" th:text="${season.summary}"></a></td>
         <td th:text="${season.year}"></td>
-
+        <td ><a th:href="'/seasons/'+${serieSummary.serie.id}+'/'+${season.id}+'/delete'" class="btn btn-danger">Delete</a></td>
     </tr>
 </table>
 <a th:href="'/series/'+${serieSummary.serie.id}+'/addSeason'" class="btn btn-default"> Add Season</a>

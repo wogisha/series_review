@@ -39,8 +39,8 @@ public class SeasonServiceImpl implements SeasonService {
     }
 
     @Override
-    public void remove(Season season) {
-        seasonRepository.delete(season);
+    public void remove(Long seasonId) {
+        seasonRepository.delete(seasonId);
 
     }
 

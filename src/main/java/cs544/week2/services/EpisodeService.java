@@ -12,7 +12,7 @@ public interface EpisodeService {
 
 	void add(Episode episode);
 	void update(Episode episode);
-	void remove(Episode episode);
+	void remove(Long episodeId);
 	void addComment(Long episodeId, Comment comment);
 	void addRating(Long episodeId, Rating rating);
 	void addCast(Long episodeId, AddCastModel addCastModel);
@@ -23,4 +23,6 @@ public interface EpisodeService {
 	List<Cast> findCastByEpisodeId(Long id);
 
 	List<Comment> findCommentsByEpisodeId(Long id);
+
+	void removeComment(Long id);
 }

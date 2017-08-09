@@ -16,79 +16,81 @@ import java.util.List;
 @Controller
 @RequestMapping("/series")
 public class SerieController {
-	@Autowired
-	private SeriesService seriesService;
+    @Autowired
+    private SeriesService seriesService;
 
 
-
-	@GetMapping("")
-	public String getSeries(Model model,@RequestParam(value = "q",required = false) String q) {
+    @GetMapping("")
+    public String getSeries(Model model, @RequestParam(value = "q", required = false) String q) {
 
         List<SerieSummary> serieSummaries = seriesService.findSeriesSummarys(q);
 
         model.addAttribute("series", serieSummaries);
 
-	    return "series/list";
-	}
+        return "series/list";
+    }
 
-	@GetMapping("{id}")
-	public String viewSerie(@PathVariable Long id, Model model){
-	    System.out.println("id "+id);
-	    SerieSummary serieSummary = seriesService.findSerieSummary(id);
+    @GetMapping("{id}")
+    public String viewSerie(@PathVariable Long id, Model model) {
+        System.out.println("id " + id);
+        SerieSummary serieSummary = seriesService.findSerieSummary(id);
 
-	    model.addAttribute("serieSummary",serieSummary);
+        model.addAttribute("serieSummary", serieSummary);
 
         return "series/view";
     }
 
     @GetMapping("{id}/addSeason")
-    public String addSeason(@PathVariable Long id,Model model){
-        System.out.println("id "+id);
+    public String addSeason(@PathVariable Long id, Model model) {
+        System.out.println("id " + id);
 
         return "series/addSeason";
     }
 
     @PostMapping("{id}/addSeason")
-    public String saveSeason(@PathVariable Long id,Season season){
+    public String saveSeason(@PathVariable Long id, Season season) {
 
         seriesService.addSeason(id, season);
 
-        System.out.println("id "+id +" season:" + season);
+        System.out.println("id " + id + " season:" + season);
 
 
-        return "redirect:/series/"+ id;
+        return "redirect:/series/" + id;
     }
 
-	@GetMapping("add")
-	public String addSerie(Model model) {
+    @GetMapping("add")
+    public String addSerie(Model model) {
 
         model.addAttribute("genres", Genre.values());
         return "series/add";
-	}
+    }
 
-	@PostMapping("add")
-	public String saveSerie(Serie serie) {
+    @PostMapping("add")
+    public String saveSerie(Serie serie) {
         seriesService.add(serie);
         return "redirect:/series";
-	}
+    }
 
-	public String updateSeries() {
-		return "";
-	}
+    public String updateSeries() {
+        return "";
+    }
 
-	public String removeSeries() {
-		return "";
-	}
+    @RequestMapping("{id}/delete")
+    public String removeSeries(@PathVariable Long id) {
 
-	public String rateSeries() {
-		return "";
-	}
+        seriesService.remove(id);
+        return "redirect:/series/";
+    }
 
-	public String searchForSeries() {
-		return "";
-	}
+    public String rateSeries() {
+        return "";
+    }
 
-	public String updatePost() {
-		return "";
-	}
+    public String searchForSeries() {
+        return "";
+    }
+
+    public String updatePost() {
+        return "";
+    }
 }

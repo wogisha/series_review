@@ -51,8 +51,11 @@ public class SeasonController {
         return "";
     }
 
-    public String removeSeason() {
-        return "";
+    @RequestMapping("{serieId}/{id}/delete")
+    public String removeSeason(@PathVariable Long id,@PathVariable Long serieId) {
+
+        seasonService.remove(id);
+        return "redirect:/series/"+serieId;
     }
 
     public String rateSeason() {

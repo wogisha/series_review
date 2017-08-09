@@ -41,8 +41,8 @@ public class EpisodeServiceImpl implements EpisodeService {
     }
 
     @Override
-    public void remove(Episode episode) {
-        episodeRepository.delete(episode);
+    public void remove(Long episodeId) {
+        episodeRepository.delete(episodeId);
 
     }
 
@@ -94,6 +94,11 @@ public class EpisodeServiceImpl implements EpisodeService {
     @Override
     public List<Comment> findCommentsByEpisodeId(Long id) {
         return commentRepository.findByEpisode_Id(id);
+    }
+
+    @Override
+    public void removeComment(Long id) {
+        commentRepository.delete(id);
     }
 
 }

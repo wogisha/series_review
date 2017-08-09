@@ -55,8 +55,11 @@ public class EpisodeController {
         return "";
     }
 
-    public String removeEpisode() {
-        return "";
+    @RequestMapping("{serieId}/{id}/delete")
+    public String removeEpisode(@PathVariable Long id,@PathVariable Long serieId) {
+
+        episodeService.remove(id);
+        return "redirect:/seasons/"+serieId;
     }
 
     public String rateEpisode() {
@@ -64,8 +67,20 @@ public class EpisodeController {
     }
 
 
-    public String removeCast() {
-        return "";
+    @RequestMapping("{episodeId}/{id}/castDelete")
+    public String removeCast(@PathVariable Long id,@PathVariable Long episodeId) {
+
+        episodeService.removeCast(id);
+
+        return "redirect:/episodes/"+episodeId;
+    }
+
+    @RequestMapping("{episodeId}/{id}/commentDelete")
+    public String removeComment(@PathVariable Long id,@PathVariable Long episodeId) {
+
+        episodeService.removeComment(id);
+
+        return "redirect:/episodes/"+episodeId;
     }
 
     public String addComment() {

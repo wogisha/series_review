@@ -20,10 +20,12 @@
     <tr>
         <th>Name of Character</th>
         <th>Actual Name</th>
+        <th></th>
     </tr>
     <tr th:each="c: ${cast}">
         <td th:text="${c.nameOfCharacter}"></td>
         <td th:text="${c.artist.name}"></td>
+        <td> <a th:href="'/episodes/'+${id}+'/'+${c.id}+'/castDelete'" class="btn btn-danger">Delete</a></td>
     </tr>
 </table>
 
@@ -40,11 +42,13 @@
     <tr>
         <th>Comment</th>
         <th>Given by</th>
+        <th></th>
     </tr>
 
     <tr th:each="c: ${comments}">
         <td th:text="${c.description}"></td>
         <td th:text="${c.givenBy}"></td>
+        <td ><a th:href="'/episodes/'+${id}+'/'+${c.id}+'/commentDelete'" class="btn btn-danger">Delete</a></td>
     </tr>
 </table>
 </body>

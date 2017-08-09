@@ -14,13 +14,17 @@ List of Series
         <th>Serie Name</th>
         <th>Genre</th>
         <th># of Seasons</th>
-        <th># of Episodes</th></tr>
+        <th># of Episodes</th>
+        <th></th>
+    </tr>
     <tr th:each="serie : ${series}"
     >
         <td><a th:href="'/series/'+${serie.serie.id}" th:text="${serie.serie.name}"></a></td>
         <td th:text="${serie.serie.genre}"></td>
         <td th:text="${serie.numberOfSeasons}"></td>
         <td th:text="${serie.numberOfEpisodes}"></td>
+
+        <td ><a th:href="'/series/'+${serie.serie.id}+'/delete'" class="btn btn-danger">Delete</a></td>
 
 
     </tr>

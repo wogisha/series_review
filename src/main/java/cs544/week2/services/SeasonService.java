@@ -9,7 +9,7 @@ import java.util.List;
 public interface SeasonService {
 	void add(Season season);
 	void update(Season season);
-	void remove(Season season);
+	void remove(Long seasonId);
 	void addRating(Long seasonId, Rating rating);
 	void addEpisode(Long seasonId,Episode episode);
 	void removeEpisode(Long episodeId);
