@@ -1,26 +1,48 @@
 package cs544.week2.controllers;
 
+import cs544.week2.entities.Artist;
+import cs544.week2.services.ArtistService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/artists")
 public class ArtistController {
-	public String getArtists() {
-		return "";
-	}
+    @Autowired
+    private ArtistService artistService;
 
-	public String addArtist() {
-		return "";
-	}
+    @GetMapping("")
+    public String getArtists(Model model) {
+        model.addAttribute("artists", artistService.findArtists());
+        return "artists/list";
+    }
 
-	public String updateArtist() {
-		return "";
-	}
+    @GetMapping("/addArtist")
+    public String addArtist() {
+        return "artists/addArtist";
+    }
 
-	public String removeArtist() {
-		return "";
-	}
+    @PostMapping("/addArtist")
+    public String saveArtist(Artist artist) {
 
-	public String updatePicture() {
-		return "";
-	}
+        artistService.add(artist);
+        return "redirect:/artists";
+    }
+
+    public String updateArtist() {
+
+        return "";
+    }
+
+    public String removeArtist() {
+        return "";
+    }
+
+    public String updatePicture() {
+        return "";
+    }
 }

@@ -2,12 +2,7 @@ package cs544.week2.entities;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 
 @Entity
@@ -15,20 +10,30 @@ public class Season {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+
 	private String poster;
 
 	private String summary;
 
 	private int year;
 
-	@OneToMany(mappedBy="season")
+	@OneToMany(mappedBy="season", fetch = FetchType.LAZY)
 	private List<Episode> episodes;
 
 	@OneToMany(mappedBy="season")
 	private List<Rating> ratings;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Serie serie;
+
+	@Override
+	public String toString() {
+		return "Season {" +
+				"poster='" + poster + '\'' +
+				", summary='" + summary + '\'' +
+				", year=" + year +
+				'}';
+	}
 
 	public List<Episode> getEpisodes() {
 		return episodes;

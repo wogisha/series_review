@@ -1,15 +1,9 @@
 package cs544.week2.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import cs544.week2.entities.enums.Genre;
 
@@ -22,15 +16,26 @@ public class Serie {
 	private String name;
 	private String description;
 	private String studio;
-	
+
+	@Enumerated(EnumType.STRING)
+	private Genre genre;
+
 	@OneToOne
 	private Artist director;
 	
 	@OneToMany(mappedBy="serie")
-	private List<Season> seasons;
-	
-	@Enumerated(EnumType.STRING)
-	private Genre genre;
+	private List<Season> seasons = new ArrayList<>();
+
+	@Override
+	public String toString() {
+		return "Serie{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", description='" + description + '\'' +
+				", studio='" + studio + '\'' +
+				", genre=" + genre +
+				'}';
+	}
 
 	@OneToMany(mappedBy="serie")
 	private List<Rating> ratings;
@@ -97,6 +102,11 @@ public class Serie {
 	
 	public void setStudio(String studio) {
 		this.studio = studio;
+	}
+
+	public void addSeason(Season season) {
+		season.setSerie(this);
+		seasons.add(season);
 	}
 	
 }

@@ -2,84 +2,85 @@ package cs544.week2.services;
 
 import java.util.List;
 
-import cs544.week2.entities.Episode;
 import cs544.week2.entities.Season;
 import cs544.week2.entities.Serie;
-import cs544.week2.entities.enums.Genre;
 import cs544.week2.model.SerieSummary;
+import cs544.week2.repositories.SeasonRepository;
+import cs544.week2.repositories.SerieRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
+@Service
+@Transactional
 public class SeriesServiceImpl implements SeriesService {
 
-	@Override
-	public void add(Serie serie) {
-		// TODO Auto-generated method stub
+	@Autowired
+	private SeasonRepository seasonRepository;
 
+	@Autowired
+    private SerieRepository serieRepository;
+
+    @Override
+	public void add(Serie serie) {
+        serieRepository.save(serie);
 	}
 
 	@Override
 	public void update(Serie serie) {
-		// TODO Auto-generated method stub
+        serieRepository.save(serie);
 
 	}
 
 	@Override
-	public void remove(Serie serie) {
-		// TODO Auto-generated method stub
-
+	public void remove(Long serieId) {
+		serieRepository.delete(serieId);
 	}
 
 	@Override
-	public SerieSummary getSeriesSummary() {
-		// TODO Auto-generated method stub
+	public SerieSummary getSeriesSummary(Long serieId) {
+
 		return null;
 	}
 
-	@Override
-	public List<Season> getSeriesSeasons() {
-		// TODO Auto-generated method stub
-		return null;
+    @Override
+    public List<SerieSummary> findSeriesSummarys(String query) {
+
+        if (query == null) {
+            query = "";
+        }
+
+        return serieRepository.findSeriesSummary(query);
+    }
+
+    @Override
+    public SerieSummary findSerieSummary(Long id) {
+
+        SerieSummary serieSummary = serieRepository.findSerieSummary(id);
+        serieSummary.setSeasonList(seasonRepository.findBySerie_Id(id));
+
+        return serieSummary;
+    }
+
+    @Override
+	public List<Season> getSeriesSeasons(Long serieId) {
+		return seasonRepository.findBySerie_Id(serieId);
 	}
 
-	@Override
-	public List<Episode> getSeriesEpisodes() {
-		// TODO Auto-generated method stub
-		return null;
+    @Override
+	public List<Serie> findSeries(String searchQuery) {
+		return serieRepository.findSeriesQuery(searchQuery);
 	}
 
-	@Override
-	public List<Serie> findByNameOfShow(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public void addSeason(Long serieId, Season season) {
+        Serie serie = serieRepository.findOne(serieId);
 
-	@Override
-	public List<Serie> findByGenreOfShow(Genre genre) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        season.setSerie(serie);
 
-	@Override
-	public List<Serie> findByRatingOfShow(double rating) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        seasonRepository.save(season);
 
-	@Override
-	public List<Serie> findByNameOfTheArtist(String nameOfTheArtist) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Serie> findByNameOfCharacter(String nameOfCharacter) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Serie> findByDirectorOfShow(String nameOfDirector) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    }
 
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+</head>
+<body class="container">
+<h3 th:text="'Season Name: '+${season.summary}"></h3>
+<p th:text="'# of Episodes: '+${season.episodes.size()}"></p>
+
+
+<table class="table table-striped">
+    <tr>
+        <th>description</th>
+        <th>AiredDate</th></tr>
+    <tr th:each="ep : ${season.episodes}">
+        <td ><a th:href="'/episodes/'+${ep.id}" th:text="${ep.description}"></a></td>
+
+        <td th:text="${ep.airedDate}"></td>
+    </tr>
+</table>
+<a th:href="'/seasons/'+${id}+'/addEpisode'" class="btn btn-default">Add Episode</a>
+<a th:href="'/series/'+${season.serie.id}" class="btn btn-default">back to serie</a>
+</body>
+</html>

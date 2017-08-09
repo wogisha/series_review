@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+</head>
+<body class="container">
+Add Artist
+
+<form class="form" th:action="'/artists/addArtist'" method="post" >
+    <div>Name <input type="text" name="name" value="name" /></div>
+    <div>Date of Birth <input type="date" name="dateOfBirth" value="1978-04-04" /></div>
+    <div>Place of Birth <input type="text" name="placeOfBirth" value="placeOfBirth" /></div>
+    <div>Biography <input type="text" name="biography" value="biography" /></div>
+    <div>Image <input type="text" name="image" value="image" /></div>
+    <button class="btn btn-default">add Artist</button> <a href="/artists" class="btn btn-default"> back to artists</a>
+</form>
+
+</body>
+</html>

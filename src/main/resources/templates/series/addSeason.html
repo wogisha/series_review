@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Seaons</title>
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+</head>
+<body class="container">
+add season
+<form th:action="'/series/'+${id}+'/addSeason'" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+    <div><input type="text" name="poster" value="poster"/></div>
+    <div><input type="text" name="summary" value="summary"/></div>
+    <div><input type="number" name="year" value="2017"/></div>
+
+    <button class="btn btn-default">Save Season</button> <a th:href="'/series/'+${id}" class="btn btn-default">Back TO Serie</a>
+
+</form>
+
+</body>
+</html>

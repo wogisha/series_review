@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+</head>
+<body class="container">
+
+add Episode
+<form th:action="'/seasons/'+${id}+'/addEpisode'" method="post">
+
+    <div>Description <input type="text" name="description" value="description"/></div>
+    <div>AiredDate <input type="date" name="airedDate" value="2017-01-02"/></div>
+
+    <button class="btn btn-default">Add Episode</button> <a th:href="'/seasons/'+${id}" class="btn btn-default">Back To Season</a>
+
+</form>
+
+
+</body>
+</html>

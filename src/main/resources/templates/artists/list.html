@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+</head>
+<body class="container">
+
+Artists
+
+<table class="table table-striped">
+    <tr th:each="a: ${artists}">
+        <td th:text="${a.name}"></td>
+        <td th:text="${a.dateOfBirth}"></td>
+        <td th:text="${a.biography}"></td>
+    </tr>
+</table>
+
+<a href="/artists/addArtist" class="btn btn-default">Add Artist</a>
+<a href="/series" class="btn btn-default">Back Series</a>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Episode View</title>
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+</head>
+<body class="container">
+<h3 th:text="${episode.description}"></h3>
+<form th:action="'/episodes/'+ ${id}+'/addCast'" method="post">
+
+    <select name="artistId">
+        <option th:value="${a.id}" th:each="a : ${artists}" th:text="${a.name}"></option>
+    </select>
+    <input type="text" name="nameOfCharacter" placeholder="Name of Character"/>
+    <button class="btn btn-default">add cast</button>
+</form>
+
+<table class="table table-striped">
+    <tr>
+        <th>Name of Character</th>
+        <th>Actual Name</th>
+    </tr>
+    <tr th:each="c: ${cast}">
+        <td th:text="${c.nameOfCharacter}"></td>
+        <td th:text="${c.artist.name}"></td>
+    </tr>
+</table>
+
+
+<form th:action="'/episodes/'+ ${id}+'/addComment'" method="post">
+    <div><textarea type="text" name="description" placeholder="Comment"/></div>
+    <div><input type="text" name="givenBy" placeholder="Your Name"/></div>
+    <button class="btn btn-default">add comment</button>
+    <a th:href="'/seasons/'+${episode.season.id}" class="btn btn-default"> back to season</a>
+</form>
+
+<table class="table table-striped">
+
+    <tr>
+        <th>Comment</th>
+        <th>Given by</th>
+    </tr>
+
+    <tr th:each="c: ${comments}">
+        <td th:text="${c.description}"></td>
+        <td th:text="${c.givenBy}"></td>
+    </tr>
+</table>
+</body>
+</html>

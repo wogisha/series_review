@@ -1,14 +1,11 @@
 package cs544.week2.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Episode {
@@ -17,9 +14,10 @@ public class Episode {
 	private Long id;
 	private String description;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date airedDate;
 
-	@OneToMany(mappedBy = "episode")
+	@OneToMany(mappedBy = "episode" )
 	private List<Comment> comments;
 
 	@OneToMany(mappedBy = "episode")
@@ -30,7 +28,15 @@ public class Episode {
 
 	@ManyToOne
 	private Season season;
-	
+
+	@Override
+	public String toString() {
+		return "Episode{" +
+				"description='" + description + '\'' +
+				", airedDate=" + airedDate +
+				'}';
+	}
+
 	public Date getAiredDate() {
 		return airedDate;
 	}
@@ -79,4 +85,11 @@ public class Episode {
 		this.ratings = ratings;
 	}
 
+	public Season getSeason() {
+		return season;
+	}
+
+	public void setSeason(Season season) {
+		this.season = season;
+	}
 }

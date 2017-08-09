@@ -1,13 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
-<title>Insert title here</title>
+    <meta charset="UTF-8"/>
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"/>
 </head>
-<body>
+<body class="container">
 
-Series List
+<form action="/series"><input type="text" name="q" placeholder="Enter Name/Genre"/> <button>search</button></form>
+List of Series
+<table class="table table-striped">
+
+    <tr>
+        <th>Serie Name</th>
+        <th>Genre</th>
+        <th># of Seasons</th>
+        <th># of Episodes</th></tr>
+    <tr th:each="serie : ${series}"
+    >
+        <td><a th:href="'/series/'+${serie.serie.id}" th:text="${serie.serie.name}"></a></td>
+        <td th:text="${serie.serie.genre}"></td>
+        <td th:text="${serie.numberOfSeasons}"></td>
+        <td th:text="${serie.numberOfEpisodes}"></td>
 
 
+    </tr>
+
+</table>
+
+<a href="/series/add" class="btn btn-default">Add Serie</a>
+<a href="/artists" class="btn btn-default"> Artists</a>
 </body>
 </html>
